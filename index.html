@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Semgle - 기능반 자료 공유</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">본문 바로가기</a>
+
+  <header class="header" id="siteHeader">
+    <div class="header__inner">
+      <!-- ✅ 홈 버튼 대신 로고 클릭으로 홈 이동 -->
+      <button class="logo" data-tab="home" aria-label="홈으로">
+        <span class="logo__mark">SEM</span><span class="logo__accent">GLE</span>
+      </button>
+
+      <nav class="nav" aria-label="주요 카테고리">
+        <button class="tab is-active" data-tab="contest">기능대회</button>
+        <button class="tab" data-tab="code">Code</button>
+        <button class="tab" data-tab="major">전문과목</button>
+        <button class="tab" data-tab="note">내 노트</button>
+        <button class="tab" data-tab="community">커뮤니티</button>
+      </nav>
+
+      <div class="actions">
+        <button id="themeToggle" class="icon-btn" type="button" aria-label="테마 변경" title="테마 변경">🌙</button>
+        <button id="mypageBtn" class="btn" type="button">마이페이지</button>
+        <button id="loginBtn" class="btn btn--ghost" type="button">
+          로그인 
+        </button>
+        <button id="logoutBtn" class="btn btn--ghost" type="button" style="display:none;">
+          로그아웃
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="main">
+    <!-- HOME -->
+    <section id="home" class="page is-active" aria-labelledby="homeTitle">
+      <div class="hero">
+        <div class="hero__inner">
+          <h1 id="homeTitle">기능반 자료 아카이브</h1>
+          <p>함께 공부하고 함께 성장하는 공간</p>
+        </div>
+      </div>
+
+      <div class="container">
+        <section class="card notice" aria-labelledby="noticeTitle">
+          <div class="notice__top">
+            <h2 id="noticeTitle" class="notice__heading">공지사항</h2>
+
+            <button class="notice__more" type="button" title="더보기(프로토타입)">
+              더보기 <span aria-hidden="true">→</span>
+            </button>
+          </div>
+
+          <!-- ✅ 공지 3개까지만 출력 -->
+          <div id="noticeGrid" class="notice__grid" aria-live="polite"></div>
+        </section>
+
+
+        <section class="card" aria-labelledby="howtoTitle">
+          <h2 id="howtoTitle">사용 방법</h2>
+          <p class="muted">
+            상단 카테고리를 눌러 자료를 확인하세요. <b>글 작성</b> 버튼으로 자료를 업로드할 수 있습니다.
+            (현재는 프로토타입이라 로그인 없이 동작합니다.)
+          </p>
+        </section>
+      </div>
+    </section>
+
+    <!-- CATEGORY CONTENT -->
+    <section id="contentPage" class="page" aria-labelledby="categoryTitle">
+      <div class="container">
+        <div class="page__head">
+          <h2 id="categoryTitle">카테고리</h2>
+
+          <div class="filters" aria-label="필터">
+            <select id="typeFilter" class="select" aria-label="자료 유형 필터">
+              <option value="all">전체</option>
+              <option value="문서">문서</option>
+              <option value="이미지">이미지</option>
+              <option value="PDF">PDF</option>
+              <option value="코드">코드</option>
+              <option value="URL">URL</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mypage" class="page" aria-labelledby="mypageTitle">
+      <div class="container">
+        <div class="page__head">
+          <h2 id="mypageTitle">마이페이지</h2>
+        </div>
+
+        <section class="card">
+          <h3 style="margin:0 0 10px 0;">내 정보</h3>
+          <div class="muted" id="myInfo"></div>
+        </section>
+
+        <section class="card">
+          <h3 style="margin:0 0 10px 0;">내가 올린 글</h3>
+          <div id="myPostList" class="post-list"></div>
+          <p id="myEmpty" class="empty muted" hidden>아직 작성한 글이 없습니다.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div>
+        <div class="footer__title">Semgle</div>
+        <div class="footer__meta">기능반 동아리 자료 공유 사이트 (프로토타입)</div>
+      </div>
+      <div class="footer__cols">
+        <div class="footer__col">
+          <div class="footer__label">Tech</div>
+          <div class="footer__value">HTML · CSS · JavaScript</div>
+        </div>
+        <div class="footer__col">
+          <div class="footer__label">GitHub</div>
+          <div class="footer__value"><span class="muted">추후 링크 추가</span></div>
+        </div>
+        <div class="footer__col">
+          <div class="footer__label">문의</div>
+          <div class="footer__value"><span class="muted">추후 추가</span></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 글 작성 모달 -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal__backdrop" data-close="true"></div>
+    <div class="modal__content">
+      <div class="modal__head">
+        <h3 id="modalTitle">자료 작성</h3>
+        <button id="closeModal" class="icon-btn" type="button" aria-label="닫기">✕</button>
+      </div>
+
+      <div class="form">
+        <label class="label" for="postTitle">제목</label>
+        <input type="text" id="postTitle" class="input" placeholder="예) VPC CIDR 확인 정리" />
+
+        <label class="label" for="postCategory">카테고리</label>
+        <select id="postCategory" class="select">
+          <option value="기능대회">기능대회</option>
+          <option value="Code">Code</option>
+          <option value="전문과목">전문과목</option>
+          <option value="내 노트">내 노트</option>
+          <option value="커뮤니티">커뮤니티</option>
+        </select>
+
+        <label class="label" for="postType">자료 유형</label>
+        <select id="postType" class="select">
+          <option value="문서">문서</option>
+          <option value="이미지">이미지</option>
+          <option value="PDF">PDF</option>
+          <option value="코드">코드</option>
+          <option value="URL">URL</option>
+        </select>
+
+        <label class="label" for="postContent">내용</label>
+        <textarea id="postContent" class="textarea" placeholder="내용을 작성하세요. (프로토타입은 파일 업로드 대신 텍스트만 저장)"></textarea>
+
+        <div class="modal__actions">
+          <button id="savePost" class="btn" type="button">저장</button>
+          <button id="cancelBtn" class="btn btn--ghost" type="button">취소</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

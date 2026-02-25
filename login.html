@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Semgle - 로그인</title>
+  <link rel="stylesheet" href="./login.css" />
+</head>
+<body>
+  <main class="wrap">
+    <!-- 🌙 테마 토글 버튼 -->
+    <button id="themeToggle" class="theme-btn" type="button">
+        🌙
+    </button>
+    <section class="card" aria-labelledby="title">
+      <div class="brand">
+        <span class="brand__mark">SEM</span><span class="brand__accent">GLE</span>
+      </div>
+
+      <h1 id="title" class="title">로그인</h1>
+      <p class="sub">DB 없이 로컬 저장으로 동작하는 프로토타입</p>
+
+      <form id="loginForm" class="form">
+        <label class="label" for="userId">아이디</label>
+        <input id="userId" class="input" type="text" placeholder="예) semgle01" autocomplete="username" required />
+
+        <label class="label" for="nickname">닉네임</label>
+        <input id="nickname" class="input" type="text" placeholder="예) 현수" required />
+
+        <button class="btn" type="submit">로그인</button>
+
+        <button id="guestBtn" class="btn btn--ghost" type="button">
+          게스트로 둘러보기
+        </button>
+
+        <p id="msg" class="msg" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="footer">
+        <a class="link" href="./index.html">← 메인으로</a>
+        <a class="link" href="./complete-signup.html"> 회원가입으로 →</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="./login.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Semgle - 회원가입 완료</title>
+  <link rel="stylesheet" href="./login.css" />
+</head>
+<body>
+  <main class="wrap">
+    <button id="themeToggle" class="theme-btn" type="button">🌙</button>
+
+    <section class="card" aria-labelledby="title">
+      <div class="brand">
+        <span class="brand__mark">SEM</span><span class="brand__accent">GLE</span>
+      </div>
+
+      <h1 id="title" class="title">회원가입 마무리</h1>
+      <p class="sub">구글 로그인 후 아래 정보를 입력해야 가입이 완료됩니다.</p>
+        <!-- ✅ 구글 계정 연결(인증) 버튼 -->
+        <a class="btn google-btn" href="/auth/google" style="margin: 10px 0 8px 0; text-align:center; display:block;">
+          <span class="g-icon" aria-hidden="true">G</span>
+          구글로 로그인(계정 연결)
+        </a>
+
+      <div id="googleBox" class="msg" style="margin-bottom:12px;"></div>
+
+      <form id="completeForm" class="form">
+        <label class="label" for="username">내 아이디</label>
+        <input id="username" class="input" type="text" placeholder="예) semgle01" required />
+
+        <label class="label" for="realName">이름</label>
+        <input id="realName" class="input" type="text" placeholder="예) 홍길동" required />
+
+        <label class="label" for="securityCode">관리자 보안코드</label>
+        <input id="securityCode" class="input" type="password" placeholder="예) SEM-2026-ADMIN" required />
+
+        <button class="btn" type="submit">회원가입 완료</button>
+        <p id="msg" class="msg" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="footer">
+        <a class="link" href="./index.html">← 다시 돌아가기</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="./login.js"></script>
+  <script src="./complete-signup.js"></script>
+</body>
+</html>
